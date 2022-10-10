@@ -16,12 +16,12 @@
     padding-top: 5px;
 }
 #pokemon_img{
-    width: 250px;
-    height: 250px;
+    width: 200px;
+    height: 200px;
     padding-top: 30px;
 }
 #pokemon_btn{
-    margin-top: 15px;
+    margin-top: 40px;
     padding: 10px;
     font-size: 15px;
     cursor: pointer;
