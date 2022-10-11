@@ -30,7 +30,9 @@ function getPokemon(pokemon){
                         <div id="pokemon_name">${arr[key].name}</div>
                         <img id="more_img1" src="${pokeData.sprites.back_default}" alt="back_pokemon">
                         <img id="more_img2" src="${pokeData.sprites.front_default}" alt="fron_pokemon">
-                        <div id="more_abil" class="abil">${pokeData.abilities[key].ability.name}</div>
+                        <div id="more_abil" class="abil">${pokeData.abilities[0].ability.name}</div>
+                        <div id="more_abil">${pokeData.abilities[1].ability.name}</div>
+                        <div id="more_abil">${pokeData.abilities[2].ability.name}</div>
                         <button id="back_btn">Back to all</button>
                     </div>
                     <div id="static">
@@ -76,7 +78,6 @@ function prev() {
 function removeEl() {
     let del = document.querySelector('#new_page')
     del.remove()
-    return
 };
 document.querySelector('#next_btn').addEventListener('click', next)
 document.querySelector('#prev_btn').addEventListener('click', prev)
@@ -86,62 +87,22 @@ document.querySelector('#prev_btn').addEventListener('click', minusCount)
 
 
 
-let b = document.querySelector('prev_btn')
+let b = document.querySelector('#prev_btn')
 
 let a = 0
 
 function plusCount() {
-    a++
+    if(a >= 0){
+        a++
+    }
     console.log(a)
-
 }
 function minusCount() {
-    a = a - 1
+    if(a > 0){
+        a--
+    }
+    // }else{
+    //     b.setAttribute(disabled, true)
+    // }
+    console.log(a)
 }
-if(a > 0){
-    b.removeAttribute(disable)
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* <div id="more_abil">${pokeData.abilities[key].ability.name}</div> */
-/* <div id="more_abil">${pokeData.abilities[key].ability.name}</div> */
