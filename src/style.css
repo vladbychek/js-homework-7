@@ -1,17 +1,15 @@
 #all{
     display: flex;
     flex-wrap: wrap;
-    gap: 30px;
-    width: 1500px;
     margin: 0 auto;
+    width: 1700px;
+    column-gap: 60px;
+    row-gap: 110px;
 }
 #pokemon{
-    border: 1px solid black;
-    width: 300px;
-    height: 400px;
     text-align: center;
 }
-#pokemon_name{
+#pokemon_name, #more_abil{
     font-size: 30px;
     padding-top: 5px;
 }
@@ -24,5 +22,43 @@
     margin-top: 40px;
     padding: 10px;
     font-size: 15px;
+    cursor: pointer;
+}
+#more_info{
+    position: relative;
+    width: 400px;
+    height: 500px;
+    border: 1px solid black;
+    display: block;
+}
+#static{
+    display: none;
+    border: 1px solid black;
+    width: 300px;
+    height: 400px;
+    margin-left: 50px;
+}
+#more_img1, #more_img2{
+    width: 195px;
+    height: 195px;
+}
+#more_img1{
+    margin-top: 50px;
+}
+#back_btn{
+    font-size: 20px;
+    margin-top: 25px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+#btns{
+    margin: 50px auto 50px;
+    width: 1170px;
+    display: flex   ;
+    justify-content: center;
+    gap: 10px;
+}
+#prev_btn, #next_btn{
+    font-size: 25px;
     cursor: pointer;
 }
