@@ -1,10 +1,14 @@
 #all{
-    display: flex;
-    flex-wrap: wrap;
+
     margin: 0 auto;
     width: 1700px;
+
+}
+#new_page{
     column-gap: 60px;
-    row-gap: 110px;
+    row-gap: 110px;   
+    display: flex;
+    flex-wrap: wrap;
 }
 #pokemon{
     text-align: center;
@@ -29,10 +33,10 @@
     width: 400px;
     height: 500px;
     border: 1px solid black;
-    display: block;
+    display: none;
 }
 #static{
-    display: none;
+    display: block;
     border: 1px solid black;
     width: 300px;
     height: 400px;
