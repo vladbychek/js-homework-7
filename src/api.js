@@ -15,14 +15,15 @@ async function baseUrl(mainLink) {
 let newPage = document.createElement('div')
 newPage.id = 'new_page'
 all.append(newPage)
+
 function getPokemon(pokemon){
     let mainUrl = pokemon.url
     fetch(mainUrl)
         .then(response => response.json())
         .then(function(pokeData){
-            let arr = []
+            const arr = []
             arr.push(pokeData)
-            let list = document.querySelector('#all')
+            console.log(arr)    
             for(let key in arr) {
                 new_page.innerHTML += `
                 <div id="pokemon">
