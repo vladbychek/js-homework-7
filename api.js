@@ -50,22 +50,37 @@ function getPokemon(pokemon){
             const arr = []
             arr.push(pokeData)    
             for(let key in arr) {
-                new_page.innerHTML += `
-                <div id="pokemon">
-                    <div id="more_info">
+                new_page.innerHTML +=
+                 `<div id="pokemon">
+                    <div id="more_info" class="more_class">
                         <div id="pokemon_name">${arr[key].name}</div>
                         <img id="more_img1" src="${pokeData.sprites.back_default}" alt="back_pokemon">
                         <img id="more_img2" src="${pokeData.sprites.front_default}" alt="fron_pokemon">
                         ${y}
-                        <button id="back_btn">Back to all</button>
+                        <button id="back_btn" class="rr">Back to all</button>
                     </div>
-                    <div id="static">
+                    <div id="static" class="staic_class">
                         <div id="pokemon_name">${arr[key].name}</div>
                         <img id="pokemon_img" src="${pokeData.sprites.front_default}" alt="main_pokemon">
-                        <button id="pokemon_btn">Show more</button>
+                        <button id="pokemon_btn" class="pok_btn">Show more</button>
                     </div>
                 </div>`
             }
+            let buttons = document.getElementsByClassName('pok_btn');
+            
+            [].forEach.call(buttons,function(el){
+                el.addEventListener('click', function () {
+                    el.closest('.static_class').style.display = "none";
+                });
+            });
+
+            // function hide() {
+                // const show = document.getElementById('more_info')
+                // const static = document.getElementById('static')
+                // show.style.display = "none";
+                // static.style.display = "block";
+            // }
+            // document.querySelector('#back_btn').addEventListener('click', hide)
         })
 } 
 
@@ -104,27 +119,5 @@ document.querySelector('#prev_btn').addEventListener('click', prev)
 
 
 
-// // function show() {
-// //     const show = document.getElementById('more_info')
-// //     const static = document.getElementById('static')
-// //     show.style.display = "block";
-// //     static.style.display = "none";
-// // }
-// // document.querySelector('#pokemon_btn').addEventListener('click', show)
-
-// // function hide() {
-// //     const show = document.getElementById('more_info')
-// //     const static = document.getElementById('static')
-// //     show.style.display = "none";
-// //     static.style.display = "block";
-// // }
-// // document.querySelector('#back_btn').addEventListener('click', hide)
 
 
-
-// let arr = [5,6,1]
-// console.log(arr)
-
-// for(a in arr){
-//     console.log(arr[a])
-// }
