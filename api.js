@@ -11,16 +11,16 @@ async function baseUrl(mainLink) {
         getPokemon(pokemon);
     })
     if(!prevPage){
-        document.getElementById('prev_btn').setAttribute("disabled", true)
+        document.querySelector('.prev_btn').setAttribute("disabled", true)
     }
     else{
-        document.getElementById('prev_btn').removeAttribute("disabled")
+        document.querySelector('.prev_btn').removeAttribute("disabled")
     }
     if(!nextPage){
-        document.getElementById('next_btn').setAttribute("disabled", true)
+        document.querySelector('.next_btn').setAttribute("disabled", true)
     }
     else{
-        document.getElementById('next_btn').removeAttribute("disabled")
+        document.querySelector('.next_btn').removeAttribute("disabled")
     }
 }
 
@@ -38,40 +38,49 @@ function getPokemon(pokemon){
     fetch(mainUrl)
         .then(response => response.json())
         .then(function(pokeData){
-            // console.log(pokeData.abilities)
             const ul = document.createElement('ul');
             let y = '<ul>';
             for(a of pokeData.abilities){
                 y+= `<li>${a.ability.name}</li>`
-                
             }
             y += '</ul>'
-            // y.append(t1)
             const arr = []
             arr.push(pokeData)    
             for(let key in arr) {
                 new_page.innerHTML +=
-                 `<div id="pokemon">
-                    <div id="more_info" class="more_class">
-                        <div id="pokemon_name">${arr[key].name}</div>
-                        <img id="more_img1" src="${pokeData.sprites.back_default}" alt="back_pokemon">
-                        <img id="more_img2" src="${pokeData.sprites.front_default}" alt="fron_pokemon">
+                 `<div class="pokemon">
+                    <div class="more_info">
+                        <div class="pokemon_name">${arr[key].name}</div>
+                        <img class="more_img1" src="${pokeData.sprites.back_default}" alt="back_pokemon">
+                        <img class="more_img2" src="${pokeData.sprites.front_default}" alt="fron_pokemon">
                         ${y}
-                        <button id="back_btn" class="rr">Back to all</button>
+                        <button class="back_btn">Back to all</button>
                     </div>
-                    <div id="static" class="staic_class">
-                        <div id="pokemon_name">${arr[key].name}</div>
-                        <img id="pokemon_img" src="${pokeData.sprites.front_default}" alt="main_pokemon">
-                        <button id="pokemon_btn" class="pok_btn">Show more</button>
+                    <div class="static">
+                        <div class="pokemon_name">${arr[key].name}</div>
+                        <img class="pokemon_img" src="${pokeData.sprites.front_default}" alt="main_pokemon">
+                        <button class="pokemon_btn">Show more</button>
                     </div>
                 </div>`
             }
-            let buttons = document.getElementsByClassName('pok_btn');
-            
-            [].forEach.call(buttons,function(el){
-                el.addEventListener('click', function () {
-                    el.closest('.static_class').style.display = "none";
-                });
+            let wrappers = document.querySelectorAll('.pokemon');
+
+
+            [].forEach.call(wrappers,function(el){
+                const more_info = el.querySelector('.more_info')
+                const static_info = el.querySelector('.static')
+                static_info.querySelector('.pokemon_btn').addEventListener('click', () => {
+                    static_info.style.display = "none"
+                    more_info.style.display = "block"                   
+                })
+            });
+            [].forEach.call(wrappers,function(el){
+                const more_info = el.querySelector('.more_info')
+                const static_info = el.querySelector('.static')
+                more_info.querySelector('.back_btn').addEventListener('click', () => {
+                    static_info.style.display = "block"
+                    more_info.style.display = "none"                   
+                })
             });
 
             // function hide() {
@@ -89,7 +98,7 @@ function next() {
     baseUrl(nextPage)
     removeEl()
     let newPage = document.createElement('div')
-    newPage.id = 'new_page'
+    newPage.className = 'new_page'
     all.append(newPage)
 
 }
@@ -97,18 +106,17 @@ function prev() {
     baseUrl(prevPage)
     removeEl()
     let newPage = document.createElement('div')
-    newPage.id = 'new_page'
+    newPage.className = 'new_page'
     all.append(newPage)
-
 }
 function removeEl() {
-    let del = document.querySelector('#new_page')
+    let del = document.querySelector('.new_page')
     del.remove()
 };
 
 
-document.querySelector('#next_btn').addEventListener('click', next)
-document.querySelector('#prev_btn').addEventListener('click', prev)
+document.querySelector('.next_btn').addEventListener('click', next)
+document.querySelector('.prev_btn').addEventListener('click', prev)
 
 
 
