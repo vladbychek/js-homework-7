@@ -98,19 +98,18 @@ function next() {
     baseUrl(nextPage)
     removeEl()
     let newPage = document.createElement('div')
-    newPage.className = 'new_page'
+    newPage.id = 'new_page'
     all.append(newPage)
-
 }
 function prev() {
     baseUrl(prevPage)
     removeEl()
     let newPage = document.createElement('div')
-    newPage.className = 'new_page'
+    newPage.id = 'new_page'
     all.append(newPage)
 }
 function removeEl() {
-    let del = document.querySelector('.new_page')
+    let del = document.querySelector('#new_page')
     del.remove()
 };
 
