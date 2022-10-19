@@ -3,58 +3,44 @@ let nextPage
 let prevPage
 
 async function baseUrl(mainLink) {
-    let mainUrl = await fetch(mainLink)
-    let content = await mainUrl.json()
+    const mainUrl = await fetch(mainLink)
+    const content = await mainUrl.json()
     nextPage = content.next
     prevPage = content.previous
     content.results.forEach(function (pokemon){
         getPokemon(pokemon);
-    })
-    if(!prevPage){
-        document.querySelector('.prev_btn').setAttribute("disabled", true)
-    }
-    else{
-        document.querySelector('.prev_btn').removeAttribute("disabled")
-    }
-    if(!nextPage){
-        document.querySelector('.next_btn').setAttribute("disabled", true)
-    }
-    else{
-        document.querySelector('.next_btn').removeAttribute("disabled")
-    }
+    });
+    !prevPage ? document.querySelector('.prev_btn').setAttribute("disabled", true) : document.querySelector('.prev_btn').removeAttribute("disabled")
+    !nextPage ? document.querySelector('.next_btn').setAttribute("disabled", true) : document.querySelector('.next_btn').removeAttribute("disabled")
 }
 
-
-
-
-let newPage = document.createElement('div')
+const newPage = document.createElement('div')
 newPage.id = 'new_page'
 all.append(newPage)
 
-
-
 function getPokemon(pokemon){
-    let mainUrl = pokemon.url
+    const mainUrl = pokemon.url
     fetch(mainUrl)
         .then(response => response.json())
         .then(function(pokeData){
-            const ul = document.createElement('ul');
-            let y = '<ul>';
+            let ul = document.createElement('ul');
+            let abils = '<ul>';
             for(a of pokeData.abilities){
-                y+= `<li>${a.ability.name}</li>`
+                abils += `<li>${a.ability.name}</li>`
             }
-            y += '</ul>'
+            abils += '</ul>'
             const arr = []
             arr.push(pokeData)    
+            console.log(pokeData)
             for(let key in arr) {
                 new_page.innerHTML +=
                  `<div class="pokemon">
                     <div class="more_info">
                         <div class="pokemon_name">${arr[key].name}</div>
                         <img class="more_img1" src="${pokeData.sprites.back_default}" alt="back_pokemon">
-                        <img class="more_img2" src="${pokeData.sprites.front_default}" alt="fron_pokemon">
-                        ${y}
-                        <button class="back_btn">Back to all</button>
+                        <img class="more_img2" src="${pokeData.sprites.front_default}" alt="front_pokemon">
+                        ${abils}
+                        <button class="back_btn">Back</button>
                     </div>
                     <div class="static">
                         <div class="pokemon_name">${arr[key].name}</div>
@@ -63,7 +49,7 @@ function getPokemon(pokemon){
                     </div>
                 </div>`
             }
-            let wrappers = document.querySelectorAll('.pokemon');
+            const wrappers = document.querySelectorAll('.pokemon');
 
 
             [].forEach.call(wrappers,function(el){
@@ -83,48 +69,26 @@ function getPokemon(pokemon){
                 })
             });
 
-            // function hide() {
-                // const show = document.getElementById('more_info')
-                // const static = document.getElementById('static')
-                // show.style.display = "none";
-                // static.style.display = "block";
-            // }
-            // document.querySelector('#back_btn').addEventListener('click', hide)
         })
 } 
 
-
-function next() {
-    baseUrl(nextPage)
-    removeEl()
-    let newPage = document.createElement('div')
-    newPage.id = 'new_page'
-    all.append(newPage)
-}
-function prev() {
-    baseUrl(prevPage)
-    removeEl()
-    let newPage = document.createElement('div')
-    newPage.id = 'new_page'
-    all.append(newPage)
-}
-function removeEl() {
-    let del = document.querySelector('#new_page')
-    del.remove()
+function removePage() {
+    const pageToDelete = document.querySelector('#new_page')
+    pageToDelete.remove()
 };
 
+document.querySelector('.next_btn').addEventListener('click', () => {
+    baseUrl(nextPage)
+    removePage()
+    const newPage = document.createElement('div')
+    newPage.id = 'new_page'
+    all.append(newPage)
+})
 
-document.querySelector('.next_btn').addEventListener('click', next)
-document.querySelector('.prev_btn').addEventListener('click', prev)
-
-
-
-
-
-
-
-
-
-
-
-
+document.querySelector('.prev_btn').addEventListener('click', () => {
+    baseUrl(prevPage)
+    removePage()
+    const newPage = document.createElement('div')
+    newPage.id = 'new_page'
+    all.append(newPage)
+})
