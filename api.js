@@ -1,4 +1,4 @@
-baseUrl('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20')
+baseUrl('https://pokeapi.co/api/v2/pokemon/?offset=1000&limit=20')
 let nextPage
 let prevPage
 
@@ -10,8 +10,8 @@ async function baseUrl(mainLink) {
     content.results.forEach(function (pokemon){
         getPokemon(pokemon);
     });
-    !prevPage ? document.querySelector('.prev_btn').setAttribute("disabled", true) : document.querySelector('.prev_btn').removeAttribute("disabled")
-    !nextPage ? document.querySelector('.next_btn').setAttribute("disabled", true) : document.querySelector('.next_btn').removeAttribute("disabled")
+    !prevPage ? document.querySelector('.prev_btn').style.display = "none" : document.querySelector('.prev_btn').style.display = "block"
+    !nextPage ? document.querySelector('.next_btn').style.display = "none" : document.querySelector('.next_btn').style.display = "block"
 }
 
 const newPage = document.createElement('div')
@@ -23,7 +23,8 @@ function getPokemon(pokemon){
     fetch(mainUrl)
         .then(response => response.json())
         .then(function(pokeData){
-            let ul = document.createElement('ul');
+            let ull = document.createElement('ul');
+            ull.className = 'abil_list'
             let abils = '<ul>';
             for(a of pokeData.abilities){
                 abils += `<li>${a.ability.name}</li>`
@@ -31,24 +32,40 @@ function getPokemon(pokemon){
             abils += '</ul>'
             const arr = []
             arr.push(pokeData)    
-            console.log(pokeData)
             for(let key in arr) {
+                console.log(pokeData.stats)
                 new_page.innerHTML +=
                  `<div class="pokemon">
                     <div class="more_info">
-                        <div class="pokemon_name">${arr[key].name}</div>
-                        <img class="more_img1" src="${pokeData.sprites.back_default}" alt="back_pokemon">
-                        <img class="more_img2" src="${pokeData.sprites.front_default}" alt="front_pokemon">
+                        <div class="more_pokemon_name">${arr[key].name}</div>
+                        <div class="more_img_wrapper">
+                            <img class="more_img1" src="${pokeData.sprites.back_default}" >
+                            <img class="more_img2" src="${pokeData.sprites.front_default}" >
+                        </div>
                         ${abils}
+                        <div class="more_stats">
+                            <div class="stat"><i class="fa-solid fa-heart hp"></i> ${pokeData.stats[0].base_stat}</div>
+                            <div class="stat"><i class="fa-solid fa-hand-back-fist dmg"></i> ${pokeData.stats[1].base_stat}</div>
+                            <div class="stat"><i class="fa-solid fa-shield def"></i> ${pokeData.stats[2].base_stat}</div>
+                            <div class="stat"><i class="fa-solid fa-bolt spec"></i> ${pokeData.stats[3].base_stat}</div>
+                            <div class="stat"><i class="fa-solid fa-person-running speed"></i> ${pokeData.stats[4].base_stat}</div>
+                        </div>
                         <button class="back_btn">Back</button>
                     </div>
                     <div class="static">
                         <div class="pokemon_name">${arr[key].name}</div>
-                        <img class="pokemon_img" src="${pokeData.sprites.front_default}" alt="main_pokemon">
+                        <div class="static_img_wrapper"><img class="pokemon_img" src="${pokeData.sprites.front_default}"></div>
                         <button class="pokemon_btn">Show more</button>
                     </div>
                 </div>`
             }
+
+            let img1=pokeData.sprites.front_default
+            if(!img1){
+                img1="logo.png"
+            }
+
+
             const wrappers = document.querySelectorAll('.pokemon');
 
 

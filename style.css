@@ -1,30 +1,37 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Indie Flower', cursive;
+    font-weight: bold;
+}
+body{
+    background-image: url(./12333jpg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+} 
 #all{
-    margin: 0 auto;
+    margin: 20px auto;
     width: 1800px;
 }
+
 #new_page{
     column-gap: 60px;
     row-gap: 110px;   
     display: flex;
     flex-wrap: wrap;
 }
-.pokemon{
-    text-align: center;
-}
 .pokemon_name, .more_abil{
-    font-size: 30px;
-    padding-top: 5px;
+    font-size: 27px;
+    padding: 18px 0 0 90px;
+}
+.pokemon_name{
+    font-size: 20px;
 }
 .pokemon_img{
-    width: 200px;
-    height: 200px;
-    padding-top: 30px;
-}
-.pokemon_btn{
-    margin-top: 40px;
-    padding: 10px;
-    font-size: 15px;
-    cursor: pointer;
+    width: 190px;
+    height: 190px;
+    padding-left: 73px;
 }
 .more_info{
     position: relative; 
@@ -32,28 +39,45 @@
     height: 500px;
     border: 1px solid black;
     display: none;
+    background-image: url(./pikachu.png);
+    background-size: cover;
 }
 .static{
     display: block;
-    border-radius: 10px;
+    border-radius: 15px;
     border: 1px solid black;
-    width: 300px;
-    height: 400px;
+    width: 350px;
+    height: 485px;
     margin-left: 50px;
-    background: linear-gradient(yellow, 70%, #7CFC00);
-    colo   
+    background-image: url(./pikachu.png);
 }
 .more_img1, .more_img2{
-    width: 195px;
-    height: 195px;
+    width: 155px;
+    height: 155px;
 }
 .more_img1{
-    margin-top: 50px;
+    margin: 40px 0 0 40px;
+}
+.hp{
+   color: red; 
+}
+.def{
+    color: gray;
+}
+.spec{
+    color: yellow;
+}
+.more_stats{
+    margin-top: 10px;
+    display: flex;
+    gap: 20px;
+    font-size: 20px;
+    justify-content: center;
 }
 .back_btn{
     font-size: 20px;
     margin-top: 25px;
-    padding: 5px 10px;
+    padding: 15px 50px;
     cursor: pointer;
 }
 .btns{
@@ -63,7 +87,54 @@
     justify-content: center;
     gap: 10px;
 }
-.prev_btn, .next_btn{
+.more_pokemon_name{
+    font-size: 27px;
+    padding: 20px 0 0 100px;
+}
+ul{
+    margin-top: 16px;
+    text-align: center;
+}
+li{
     font-size: 25px;
+    list-style-type: none;
+}
+.pokemon_btn{
+    padding: 15px 50px; 
+    margin: 50px auto;
+}
+.back_btn{
+    padding: 5px 30px;
+    margin: 4px auto;
+    position: absolute;
+    left: 38%;
+    top: 88%;    
+}
+button{
+    display: block;
     cursor: pointer;
+    padding: 10px 30px;
+    position: relative;
+    border: 2px solid #f1c40f;
+    color: #f1c40f;
+    background-color:white;
+    transition: .4s;
+}
+button:after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    border: 2px solid rgba(0, 0, 0, 0);
+    transition: .4s;
+}
+button:hover:after{
+    border-color: #f1c40f;
+    width: calc(100% - 10px);
+    height: calc(100% + 10px);
 }
