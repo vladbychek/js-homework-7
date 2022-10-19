@@ -1,4 +1,4 @@
-baseUrl('https://pokeapi.co/api/v2/pokemon/?offset=1000&limit=20')
+baseUrl('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20')
 let nextPage
 let prevPage
 
