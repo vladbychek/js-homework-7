@@ -1,17 +1,20 @@
 *{
     padding: 0;
     margin: 0;
+    font-family: 'Indie Flower', cursive;
+    font-weight: bold;
 }
 body{
     background-image: url(./12333jpg.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-}
+} 
 #all{
     margin: 20px auto;
     width: 1800px;
 }
+
 #new_page{
     column-gap: 60px;
     row-gap: 110px;   
@@ -20,44 +23,62 @@ body{
 }
 .pokemon_name, .more_abil{
     font-size: 27px;
-    padding: 15px 0 0 90px;
-
+    padding: 18px 0 0 90px;
+}
+.pokemon_name{
+    font-size: 20px;
 }
 .pokemon_img{
-    width: 200px;
-    height: 200px;
-    margin-bottom: 10px;
-    padding-left: 70px;
+    width: 160px;
+    height: 160px;
+    padding: 11px 0 0 100px;
 }
 .more_info{
     position: relative; 
     width: 400px;
-    height: 500px;
+    height: 555px;
+    border-radius: 15px;
     border: 1px solid black;
     display: none;
-    background-image: url(./png-clipart-lunareclipse-blanks-yellow-trading-card-frame-thumbnail.png);
+    background-image: url(./pikachu.png);
     background-size: cover;
 }
 .static{
     display: block;
-    border-radius: 10px;
+    border-radius: 15px;
     border: 1px solid black;
     width: 350px;
-    height: 420px;
+    height: 485px;
     margin-left: 50px;
-    background-image: url(./png-clipart-lunareclipse-blanks-yellow-trading-card-frame-thumbnail.png);
+    background-image: url(./pikachu.png);
 }
 .more_img1, .more_img2{
-    width: 195px;
-    height: 195px;
+    width: 155px;
+    height: 155px;
 }
 .more_img1{
-    margin-top: 50px;
+    margin: 40px 0 0 40px;
+}
+.hp{
+   color: red; 
+}
+.def{
+    color: gray;
+}
+.spec{
+    color: yellow;
+}
+.more_stats{
+    margin-top: 10px;
+    display: flex;
+    gap: 20px;
+    font-size: 20px;
+    justify-content: center;
 }
 .back_btn{
     font-size: 20px;
-    margin-top: 25px;
-    padding: 5px 10px;
+    margin-top: 0px;
+    padding: 15px 50px;
     cursor: pointer;
 }
 .btns{
@@ -67,32 +88,40 @@ body{
     justify-content: center;
     gap: 10px;
 }
-.prev_btn, .next_btn{
-    font-size: 25px;
-    cursor: pointer;
-}
 .more_pokemon_name{
     font-size: 27px;
     padding: 20px 0 0 100px;
 }
-
-
-
-.pokemon_btn, .back_btn, .prev_btn, .next_btn {
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    margin: 40px auto;
+ul{
+    margin-top: 16px;
+    text-align: center;
+}
+li{
+    font-size: 25px;
+    list-style-type: none;
+}
+.pokemon_btn{
+    padding: 15px 50px; 
+    margin: 50px auto;
+}
+.back_btn{
+    padding: 5px 30px;
+    margin: 4px auto;
+    position: absolute;
+    left: 38%;
+    top: 88%;    
+}
+button{
     display: block;
+    cursor: pointer;
     padding: 10px 30px;
     position: relative;
     border: 2px solid #f1c40f;
     color: #f1c40f;
-    font-family: 'Montserrat', sans-serif;
     background-color:white;
     transition: .4s;
 }
-.pokemon_btn:after, .back_btn:after, .prev_btn:after, .next_btn:after {
+button:after{
     content: "";
     position: absolute;
     top: 0;
@@ -105,8 +134,14 @@ body{
     border: 2px solid rgba(0, 0, 0, 0);
     transition: .4s;
 }
-.pokemon_btn:hover:after, .back_btn:hover:after, .prev_btn:hover:after, .next_btn:hover:after {
+button:hover:after{
     border-color: #f1c40f;
     width: calc(100% - 10px);
     height: calc(100% + 10px);
+}
+.logo{
+    margin: 0 auto;
+    display: block;
+    width: 500px;
+    margin-bottom: 50px;
 }
