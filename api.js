@@ -23,8 +23,6 @@ function getPokemon(pokemon){
     fetch(mainUrl)
         .then(response => response.json())
         .then(function(pokeData){
-            let ull = document.createElement('ul');
-            ull.className = 'abil_list'
             let abils = '<ul>';
             for(a of pokeData.abilities){
                 abils += `<li>${a.ability.name}</li>`
@@ -33,14 +31,21 @@ function getPokemon(pokemon){
             const arr = []
             arr.push(pokeData)    
             for(let key in arr) {
-                console.log(pokeData.stats)
+                let img1=pokeData.sprites.front_default
+                let img2 = pokeData.sprites.back_default
+                if(!img2){
+                    img2="./img/noimg.jpg"
+                }
+                if(!img1){
+                    img1="./img/noimg.jpg"
+                }
                 new_page.innerHTML +=
                  `<div class="pokemon">
                     <div class="more_info">
                         <div class="more_pokemon_name">${arr[key].name}</div>
                         <div class="more_img_wrapper">
-                            <img class="more_img1" src="${pokeData.sprites.back_default}" >
-                            <img class="more_img2" src="${pokeData.sprites.front_default}" >
+                            <img class="more_img1" src="${img2}" >
+                            <img class="more_img2" src="${img1}" >
                         </div>
                         ${abils}
                         <div class="more_stats">
@@ -54,20 +59,14 @@ function getPokemon(pokemon){
                     </div>
                     <div class="static">
                         <div class="pokemon_name">${arr[key].name}</div>
-                        <div class="static_img_wrapper"><img class="pokemon_img" src="${pokeData.sprites.front_default}"></div>
+                        <div class="static_img_wrapper"><img class="pokemon_img" src="${img1}"></div>
                         <button class="pokemon_btn">Show more</button>
                     </div>
                 </div>`
             }
-
-            let img1=pokeData.sprites.front_default
-            if(!img1){
-                img1="logo.png"
-            }
-
-
+        })
+        .then(function(){
             const wrappers = document.querySelectorAll('.pokemon');
-
 
             [].forEach.call(wrappers,function(el){
                 const more_info = el.querySelector('.more_info')
@@ -76,18 +75,14 @@ function getPokemon(pokemon){
                     static_info.style.display = "none"
                     more_info.style.display = "block"                   
                 })
-            });
-            [].forEach.call(wrappers,function(el){
-                const more_info = el.querySelector('.more_info')
-                const static_info = el.querySelector('.static')
                 more_info.querySelector('.back_btn').addEventListener('click', () => {
                     static_info.style.display = "block"
                     more_info.style.display = "none"                   
                 })
             });
-
-        })
+        }) 
 } 
+
 
 function removePage() {
     const pageToDelete = document.querySelector('#new_page')
@@ -95,17 +90,19 @@ function removePage() {
 };
 
 document.querySelector('.next_btn').addEventListener('click', () => {
+    createNewPage()
     baseUrl(nextPage)
-    removePage()
-    const newPage = document.createElement('div')
-    newPage.id = 'new_page'
-    all.append(newPage)
 })
 
 document.querySelector('.prev_btn').addEventListener('click', () => {
+    createNewPage()
     baseUrl(prevPage)
+})
+
+function createNewPage() {
     removePage()
     const newPage = document.createElement('div')
     newPage.id = 'new_page'
     all.append(newPage)
-})
+}
+

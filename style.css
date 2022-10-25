@@ -5,23 +5,25 @@
     font-weight: bold;
 }
 body{
-    background-image: url(./12333jpg.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+    background: linear-gradient(90deg, #69b7eb, #b3dbd3, #f4d6db);
 } 
-#all{
-    margin: 20px auto;
-    width: 1800px;
+.logo{
+    margin: 0 auto;
+    display: block;
+    width: 500px;
+    margin-bottom: 50px;
 }
-
+#all{
+    margin: 0 auto;
+    width: 85%;
+}
 #new_page{
-    column-gap: 60px;
+    column-gap: 20px;
     row-gap: 110px;   
     display: flex;
     flex-wrap: wrap;
 }
-.pokemon_name, .more_abil{
+.pokemon_name{
     font-size: 27px;
     padding: 18px 0 0 90px;
 }
@@ -29,31 +31,28 @@ body{
     font-size: 20px;
 }
 .pokemon_img{
-    width: 190px;
-    height: 190px;
-    padding-left: 73px;
+    width: 50%;
+    padding: 11px 0 0 100px;
 }
 .more_info{
     position: relative; 
     width: 400px;
-    height: 500px;
-    border: 1px solid black;
+    height: 555px;
+    border-radius: 15px;
     display: none;
-    background-image: url(./pikachu.png);
+    background-image: url(/img/card.png);
     background-size: cover;
 }
 .static{
     display: block;
     border-radius: 15px;
-    border: 1px solid black;
     width: 350px;
     height: 485px;
     margin-left: 50px;
-    background-image: url(./pikachu.png);
+    background-image: url(./img/card.png);
 }
 .more_img1, .more_img2{
-    width: 155px;
-    height: 155px;
+    width: 40%;
 }
 .more_img1{
     margin: 40px 0 0 40px;
@@ -74,16 +73,15 @@ body{
     font-size: 20px;
     justify-content: center;
 }
-.back_btn{
+.back_btn{  
     font-size: 20px;
-    margin-top: 25px;
+    margin-top: 0px;
     padding: 15px 50px;
     cursor: pointer;
 }
 .btns{
-    margin: 50px auto 50px;
-    width: 1170px;
-    display: flex   ;
+    margin: 50px 0;
+    display: flex;
     justify-content: center;
     gap: 10px;
 }
@@ -94,21 +92,18 @@ body{
 ul{
     margin-top: 16px;
     text-align: center;
-}
-li{
     font-size: 25px;
     list-style-type: none;
 }
 .pokemon_btn{
     padding: 15px 50px; 
-    margin: 50px auto;
+    margin: 65px auto;
 }
 .back_btn{
     padding: 5px 30px;
-    margin: 4px auto;
     position: absolute;
     left: 38%;
-    top: 88%;    
+    top: 79%;    
 }
 button{
     display: block;
